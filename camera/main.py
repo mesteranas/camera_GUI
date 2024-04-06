@@ -1,7 +1,7 @@
 import sys
 from custome_errors import *
 sys.excepthook = my_excepthook
-from PyQt6.QtMultimedia import QCamera,QImageCapture,QMediaCaptureSession,QMediaRecorder,QAudioInput
+from PyQt6.QtMultimedia import QCamera,QImageCapture,QMediaCaptureSession,QMediaRecorder,QAudioInput,QMediaFormat
 from PyQt6.QtMultimediaWidgets import QVideoWidget
 import update
 import gui
@@ -30,6 +30,9 @@ class main (qt.QMainWindow):
         self.photo=QImageCapture(self)
         self.media.setImageCapture(self.photo)
         self.recorder=QMediaRecorder()
+        self.format=QMediaFormat()
+        self.format.setAudioCodec(self.format.AudioCodec.MP3)
+        self.recorder.setMediaFormat(self.format)
         self.mediaVideo.setRecorder(self.recorder)
         self.setting=qt.QPushButton(_("settings"))
         self.setting.setDefault(True)
